@@ -4,18 +4,19 @@ import { RouterOutlet } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TasksService } from './services/tasks.service';
 import Task from './interfaces/task';
+import { TaskComponent } from "./components/task/task.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [CommonModule, RouterOutlet, ReactiveFormsModule, TaskComponent]
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.tasks = this.taskService.readTasks();
-    console.log({ task: this.tasks });
+    console.log({ tasks: this.tasks });
   }
 
   title = 'todoapp2024';
