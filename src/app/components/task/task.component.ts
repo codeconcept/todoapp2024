@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import Task from '../../interfaces/task';
 // https://angular.io/api/common/DatePipe
 import { CommonModule } from '@angular/common';
@@ -17,9 +17,9 @@ import { CommonModule } from '@angular/common';
       <p>
         <input
           type="checkbox"
-          id="taskDone"
+          [id]="task.id"
           (change)="handleTaskState($event)"
-        /><label for="taskDone">{{ isDoneSig() ? 'fait' : 'à faire' }}</label>
+        /><label [for]="task.id">{{ isDoneSig() ? 'fait' : 'à faire' }}</label>
       </p>
     </div>
   `,
@@ -27,10 +27,12 @@ import { CommonModule } from '@angular/common';
 })
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
+  @Output() onTaskStatusChange: EventEmitter<any> = new EventEmitter();
 
   isDoneSig = signal<boolean>(false);
 
   handleTaskState(e: Event) {
     this.isDoneSig.update((status) => !status);
+    this.onTaskStatusChange.emit([this.isDoneSig(), this.task.id]);
   }
 }

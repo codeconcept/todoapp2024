@@ -18,9 +18,9 @@
     <br>
     <input type="submit" value="créer">
   </form>
-  <!-- {{ tasks | json }} -->
+  {{ tasks | json }}
   @for (t of tasks; track t.id) {
-    <app-task [task]="t"></app-task>
+    <app-task [task]="t" (onTaskStatusChange)="updateTaskStatus($event[0], $event[1])"></app-task>
   } @empty {
     <div>Aucune tâche en attente</div>
   }

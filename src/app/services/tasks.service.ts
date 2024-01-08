@@ -11,7 +11,7 @@ export class TasksService {
       taskName: 'Tâche pré-existante',
       taskDate: new Date(),
       done: false,
-    }
+    },
   ]);
 
   createTask(taskName: string, taskDate: string): void {
@@ -27,5 +27,12 @@ export class TasksService {
 
   readTasks(): Task[] {
     return this.tasksSig();
+  }
+
+  updateTaskStatus(status: boolean, id: string): void {
+    // console.log(`le service a reçu ${status} et ${id}`);
+    this.tasksSig.update((tasks) =>
+      tasks.map((t) => (t.id !== id ? t : { ...t, done: status }))
+    );
   }
 }
