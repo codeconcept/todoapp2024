@@ -2,10 +2,11 @@
 .main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 </style>
 <main class="main">
-  <h3>A faire {{title}}</h3>
+  <h3>A faire</h3>
   <form [formGroup]="taskForm" (ngSubmit)="addTask($event)">
     <label for="taskName">Nom de la tâche</label>
     <br>
