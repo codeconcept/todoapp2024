@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  signal,
+} from '@angular/core';
 import Task from '../../interfaces/task';
 // https://angular.io/api/common/DatePipe
 import { CommonModule } from '@angular/common';
@@ -25,7 +33,11 @@ import { CommonModule } from '@angular/common';
   `,
   styleUrl: './task.component.css',
 })
-export class TaskComponent {
+export class TaskComponent implements OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes['task'].currentValue.done);
+  }
+
   @Input({ required: true }) task!: Task;
   @Output() onTaskStatusChange: EventEmitter<any> = new EventEmitter();
 

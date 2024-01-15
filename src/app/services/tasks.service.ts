@@ -12,6 +12,18 @@ export class TasksService {
       taskDate: new Date(),
       done: false,
     },
+    {
+      id: '2',
+      taskName: 'Tâche pré-existante bis',
+      taskDate: new Date('2024-03-1'),
+      done: true,
+    },
+    {
+      id: '3',
+      taskName: 'Et de trois',
+      taskDate: new Date('2024-03-15'),
+      done: false,
+    },
   ]);
 
   createTask(taskName: string, taskDate: string): void {
