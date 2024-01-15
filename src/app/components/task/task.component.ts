@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
           type="checkbox"
           [id]="task.id"
           (change)="handleTaskState($event)"
+          [checked]="isDoneSig()"
         /><label [for]="task.id">{{ isDoneSig() ? 'fait' : 'à faire' }}</label>
       </p>
     </div>
@@ -36,6 +37,7 @@ import { CommonModule } from '@angular/common';
 export class TaskComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes['task'].currentValue.done);
+    this.isDoneSig.set(changes['task'].currentValue.done);
   }
 
   @Input({ required: true }) task!: Task;
