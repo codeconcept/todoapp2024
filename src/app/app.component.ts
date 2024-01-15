@@ -42,4 +42,10 @@ export class AppComponent implements OnInit {
     this.taskService.updateTaskStatus(status, id);
     this.tasks = this.taskService.readTasks();
   }
+
+  deleteTask(id: string) {
+    console.log(`delete ${id}`);
+    this.taskService.deleteTask(id);
+    this.tasks = this.taskService.readTasks();
+  }
 }

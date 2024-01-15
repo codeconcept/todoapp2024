@@ -29,6 +29,7 @@ import { CommonModule } from '@angular/common';
           (change)="handleTaskState($event)"
           [checked]="isDoneSig()"
         /><label [for]="task.id">{{ isDoneSig() ? 'fait' : 'à faire' }}</label>
+        &nbsp; <button (click)="handleDelete()">suppr</button>
       </p>
     </div>
   `,
@@ -42,11 +43,16 @@ export class TaskComponent implements OnChanges {
 
   @Input({ required: true }) task!: Task;
   @Output() onTaskStatusChange: EventEmitter<any> = new EventEmitter();
+  @Output() onTaskDelete: EventEmitter<any> = new EventEmitter();
 
   isDoneSig = signal<boolean>(false);
 
   handleTaskState(e: Event) {
     this.isDoneSig.update((status) => !status);
     this.onTaskStatusChange.emit([this.isDoneSig(), this.task.id]);
+  }
+
+  handleDelete() {
+    this.onTaskDelete.emit(this.task.id);
   }
 }

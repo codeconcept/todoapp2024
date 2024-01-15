@@ -47,4 +47,8 @@ export class TasksService {
       tasks.map((t) => (t.id !== id ? t : { ...t, done: status }))
     );
   }
+
+  deleteTask(id: string): void {
+    this.tasksSig.update((tasks) => tasks.filter((t) => t.id !== id));
+  }
 }

@@ -1,28 +1,38 @@
 <style>
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 </style>
 <main class="main">
   <h3>A faire</h3>
   <form [formGroup]="taskForm" (ngSubmit)="addTask($event)">
     <label for="taskName">Nom de la tâche</label>
-    <br>
-    <input id="taskName" type="text" placeholder="Nouvelle tâche" formControlName="taskName" autofocus>
-    <br>
+    <br />
+    <input
+      id="taskName"
+      type="text"
+      placeholder="Nouvelle tâche"
+      formControlName="taskName"
+      autofocus
+    />
+    <br />
     <label for="taskDate">A réaliser le</label>
-    <br>
-    <input type="date" id="taskDate" formControlName="taskDate">
-    <br>
-    <input type="submit" value="créer">
+    <br />
+    <input type="date" id="taskDate" formControlName="taskDate" />
+    <br />
+    <input type="submit" value="créer" />
   </form>
   {{ tasks | json }}
   @for (t of tasks; track t.id) {
-    <app-task [task]="t" (onTaskStatusChange)="updateTaskStatus($event[0], $event[1])"></app-task>
+  <app-task
+    [task]="t"
+    (onTaskStatusChange)="updateTaskStatus($event[0], $event[1])"
+    (onTaskDelete)="deleteTask($event)"
+  ></app-task>
   } @empty {
-    <div>Aucune tâche en attente</div>
+  <div>Aucune tâche en attente</div>
   }
 </main>
 <router-outlet></router-outlet>
