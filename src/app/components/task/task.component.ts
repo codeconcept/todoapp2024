@@ -22,14 +22,18 @@ import { CommonModule } from '@angular/common';
         A faire avant le :
         {{ task.taskDate | date : 'EEEE dd MMMM YYYY' : '' : 'fr-FR' }}
       </p>
-      <p>
-        <input
-          type="checkbox"
-          [id]="task.id"
-          (change)="handleTaskState($event)"
-          [checked]="isDoneSig()"
-        /><label [for]="task.id">{{ isDoneSig() ? 'fait' : 'à faire' }}</label>
-        &nbsp; <button (click)="handleDelete()">suppr</button>
+      <p class="task-footer">
+        <span>
+          <input
+            type="checkbox"
+            [id]="task.id"
+            (change)="handleTaskState($event)"
+            [checked]="isDoneSig()"
+          /><label [for]="task.id">{{
+            isDoneSig() ? 'fait' : 'à faire'
+          }}</label>
+        </span>
+        <button (click)="handleDelete()" class="del">suppr</button>
       </p>
     </div>
   `,
