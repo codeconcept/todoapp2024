@@ -5,13 +5,14 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TasksService } from './services/tasks.service';
 import Task from './interfaces/task';
 import { TaskComponent } from './components/task/task.component';
+import { TasksheadComponent } from './components/taskshead/taskshead.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, TaskComponent],
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, TaskComponent, TasksheadComponent],
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {

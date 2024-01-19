@@ -24,6 +24,7 @@
     <br />
     <input type="submit" value="créer" />
   </form>
+  <app-taskshead [tasks]="tasks"></app-taskshead>
   <!-- {{ tasks | json }} -->
   @for (t of tasks; track t.id) {
   <app-task
